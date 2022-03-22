@@ -1,5 +1,8 @@
 export async function getServerSideProps() {
-  const response = await fetch("http://localhost:3000/api/hack");
+  // needs to be processed during build time - for now using .env.local setting
+  console.log(process.env.VERCEL_URL);
+  const rootUrl = process.env.VERCEL_URL;
+  const response = await fetch(`${rootUrl}/api/hack`);
   const data = await response.text();
   return {
     props: {
